@@ -923,15 +923,15 @@ docker run --rm -it -v "$PWD/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro" -
 
 [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) のリンクをクリックしてください。 <-- このリンク
 
-![こちらをクリック](images/click.png)
+![こちらをクリック](../images/click.png)
 
 ### ページの編集
 
-![これを編集](images/edit.png)
+![これを編集](../images/edit.png)
 
 ### 変更を加えてコミット
 
-![これを変更](images/change.png)
+![これを変更](../images/change.png)
 
-![コミット](images/commit.png)
+![コミット](../images/commit.png)
 
