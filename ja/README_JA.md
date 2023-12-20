@@ -296,62 +296,7 @@ docker load < my_image.tar.gz
 
 ```sh
 docker save my_image:my_tag | gzip > my_image.tar.gz
-
-### Networks
-
-* [`docker network create`](https://docs.docker.com/engine/reference/commandline/network_create/) creates a new network.
-* [`docker network connect`](https://docs.docker.com/engine/reference/commandline/network_connect/) connects a container to a network.
-* [`docker network disconnect`](https://docs.docker.com/engine/reference/commandline/network_disconnect/) disconnects a container from a network.
-* [`docker network ls`](https://docs.docker.com/engine/reference/commandline/network_ls/) lists networks.
-* [`docker network inspect`](https://docs.docker.com/engine/reference/commandline/network_inspect/) shows information about a network.
-* [`docker network rm`](https://docs.docker.com/engine/reference/commandline/network_rm/) removes one or more networks.
-
-Dockerのネットワーキングに関する詳細は[こちら](https://docs.docker.com/network/)を参照してください。
-
-### Registry and Repository
-
-Dockerイメージのレジストリとリポジトリに関する詳細は[こちら](https://docs.docker.com/registry/)を参照してください。
-
-### Dockerfile
-
-Dockerfileの詳細については、[こちら](https://docs.docker.com/engine/reference/builder/)を参照してください。
-
-### Layers
-
-Dockerのイメージレイヤに関する詳細は[こちら](https://docs.docker.com/storage/storagedriver/)を参照してください。
-
-### Links
-
-Dockerのコンテナリンクに関する詳細は[こちら](https://docs.docker.com/network/linking/)を参照してください。
-
-### Volumes
-
-Dockerのボリュームに関する詳細は[こちら](https://docs.docker.com/storage/volumes/)を参照してください。
-
-### Exposing Ports
-
-* [`docker run -p`](https://docs.docker.com/engine/reference/commandline/run/#publish-or-expose-port) publishes a container's port(s) to the host.
-* [`docker port`](https://docs.docker.com/engine/reference/commandline/port) shows the public-facing port of a container.
-
-### Best Practices
-
-Dockerのベストプラクティスに関する詳細は[こちら](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)を参照してください。
-
-### Docker-Compose
-
-* [`docker-compose`](https://docs.docker.com/compose/reference/overview/)は、複数のサービスを使用してアプリケーションの実行を定義および管理するためのツールです。
-
-### Security
-
-Dockerセキュリティに関する詳細は[こちら](https://docs.docker.com/engine/security/)を参照してください。
-
-### Tips
-
-Dockerのヒントに関する詳細は[こちら](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)を参照してください。
-
-### Contributing
-
-このチートシートの改善にご協力いただける場合は、[Contributing](#contributing)セクションを参照してください。
+```
 
 ### コンテナのインポート/エクスポート
 
@@ -423,6 +368,7 @@ Docker.comは中央レジストリを含む複数のリポジトリを保存し�
 [ドッカーディストリビューション](https://github.com/docker/distribution)プロジェクトを使用して、[ローカルデプロイの手順](https://github.com/docker/docker.github.io/blob/master/registry/deploying.md)を見ることで、ローカルレジストリを実行できます。
 
 また、[メーリングリスト](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution)も参照してください。
+
 
 ## Dockerfile
 
@@ -668,6 +614,27 @@ docker -d --icc=false --iptables
 ```sh
 docker run --read-only
 ``
+
+イメージをハッシュサムで検証する:
+
+```sh
+docker pull debian@sha256:a25306f3850e1bd44541976aa7b5fd0a29be
+```
+
+ボリュームを読み取り専用に設定する:
+
+```sh
+docker run -v $(pwd)/secrets:/secrets:ro debian
+```
+
+Dockerfile内でユーザーを定義して実行し、コンテナ内でrootとして実行されないようにする:
+
+```Dockerfile
+RUN groupadd -r user && useradd -r -g user user
+USER user
+```
+
+
 
 ### ユーザーネームスペース
 
